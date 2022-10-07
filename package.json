@@ -1,7 +1,6 @@
 {
   "name": "@shoppable-tools/shoppable-infinite-scroll",
   "version": "1.0.0",
-  "private": true,
   "source": "src/index.tsx",
   "main": "dist/index.js",
   "dependencies": {
