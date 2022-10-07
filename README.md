@@ -1,7 +1,8 @@
 # Shoppable Pagination
 
-This project is the for the internal component for infinite scrolling for Shoppable. This will be used
-for 
+This project is the for the internal component for infinite scrolling for Shoppable.
+
+## Node 18.2.0
 
 ## Install
 
