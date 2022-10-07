@@ -2,21 +2,21 @@
 
 This project is the for the internal component for infinite scrolling for Shoppable.
 
-## Node 18.2.0
+## Node 18.10.0
 
 ## Install
 
 ```  
-  npm install --save shoppable-pagination
+  npm install --save @shoppable-tools/shoppable-infinite-scroll
 
   or
 
-  yarn add shoppable-pagination
+  yarn add @shoppable-tools/shoppable-infinite-scroll
 
   // in code ES6
-  import InfiniteScroll from 'shoppable-pagination';
+  import InfiniteScroll from '@shoppable-tools/shoppable-infinite-scroll';
   // or commonjs
-  var InfiniteScroll = require('shoppable-pagination');
+  var InfiniteScroll = require('@shoppable-tools/shoppable-infinite-scroll');
 ```
 
 ## props
