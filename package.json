@@ -1,5 +1,5 @@
 {
-  "name": "@shoppable-tools/shoppable-infinite-scroll",
+  "name": "@72lux/shoppable-infinite-scroll",
   "version": "1.0.0",
   "source": "src/index.tsx",
   "main": "dist/index.js",
@@ -26,13 +26,7 @@
     "watch:build": "tsc -p tsconfig.json",
     "watch:server": "nodemon dist --watch -V"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/72lux/shoppable-infinite-scroll.git"
-  },
+  "repository": "git://github.com/72lux/shoppable-infinite-scroll.git",
   "eslintConfig": {
     "extends": [
       "react-app",
