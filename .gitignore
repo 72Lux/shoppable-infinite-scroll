@@ -5,7 +5,9 @@
 /.pnp
 .pnp.js
 
-/idea
+.idea
+
+.npmrc
 
 # testing
 /coverage
