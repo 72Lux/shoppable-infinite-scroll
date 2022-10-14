@@ -32,8 +32,8 @@ export interface Props {
   loaderHTML : Function
 }
 
-export const ShoppablePagination : React.FC<Props> = props => {
-  const loader = useRef(null);
+export const ShoppableInfiniteScroll : React.FC<Props> = props => {
+  const loader = useRef<HTMLDivElement>(null);
   const [initiateFetch, setInitiateFetch] = useState(false);
   const [visible, setVisible] = useState(false);
 

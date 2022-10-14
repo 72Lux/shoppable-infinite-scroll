@@ -1,6 +1,6 @@
 {
   "name": "@72lux/shoppable-infinite-scroll",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "source": "src/index.tsx",
   "main": "dist/index.js",
   "dependencies": {
@@ -23,7 +23,8 @@
     "clean": "rimraf dist",
     "start": "npm run watch:build && npm run watch:server --print-label",
     "watch:build": "tsc -p tsconfig.json",
-    "watch:server": "nodemon dist --watch -V"
+    "watch:server": "nodemon dist --watch -V",
+    "test": "jest"
   },
   "repository": "https://github.com/72Lux/shoppable-infinite-scroll",
   "eslintConfig": {

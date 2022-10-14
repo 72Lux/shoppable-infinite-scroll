@@ -1,23 +1,23 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-export var ShoppablePagination = function (props) {
-    var loader = useRef(null);
-    var _a = useState(false), initiateFetch = _a[0], setInitiateFetch = _a[1];
-    var _b = useState(false), visible = _b[0], setVisible = _b[1];
-    var handleObserver = useCallback(function (entries) {
+export const ShoppableInfiniteScroll = props => {
+    const loader = useRef(null);
+    const [initiateFetch, setInitiateFetch] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const handleObserver = useCallback((entries) => {
         // @ts-ignore
         if (entries[0] && entries[0].isIntersecting) {
             setInitiateFetch(true); // set true to initiate fetch
         }
     }, []);
     // track if scrollable div is in view
-    useEffect(function () {
-        var observer = new IntersectionObserver(handleObserver);
+    useEffect(() => {
+        const observer = new IntersectionObserver(handleObserver);
         if (loader.current) {
             observer.observe(loader.current);
         }
     }, [handleObserver]);
     // initiate fetch if all conditions met
-    useEffect(function () {
+    useEffect(() => {
         if (initiateFetch && props.hasMore && !props.searchInProgress) {
             // @ts-ignore
             props.fetch();
@@ -25,9 +25,9 @@ export var ShoppablePagination = function (props) {
         setInitiateFetch(false);
     }, [initiateFetch, props.hasMore, props.searchInProgress]);
     // check which dom element needs to be scrolled
-    useEffect(function () {
+    useEffect(() => {
         if (props.buttonSettings.id) {
-            var el = document.getElementById(props.buttonSettings.id);
+            const el = document.getElementById(props.buttonSettings.id);
             // @ts-ignore
             el.addEventListener('scroll', toggleVisible);
         }
@@ -35,11 +35,11 @@ export var ShoppablePagination = function (props) {
             window.addEventListener('scroll', toggleVisible);
         }
     }, []);
-    var toggleVisible = function () {
+    const toggleVisible = () => {
         // limit at which the back to top will be revealed
-        var limit = props.buttonSettings.limit ? props.buttonSettings.limit : 300;
+        const limit = props.buttonSettings.limit ? props.buttonSettings.limit : 300;
         // @ts-ignore
-        var scrolled = props.buttonSettings.id ? document.getElementById(props.buttonSettings.id).scrollTop : document.documentElement.scrollTop;
+        let scrolled = props.buttonSettings.id ? document.getElementById(props.buttonSettings.id).scrollTop : document.documentElement.scrollTop;
         if (scrolled > limit) {
             setVisible(true);
         }
@@ -49,14 +49,14 @@ export var ShoppablePagination = function (props) {
     };
     return (React.createElement(React.Fragment, null,
         props.classNames ?
-            React.createElement("div", { className: props.classNames }, props.items.map(function (item, index) {
+            React.createElement("div", { className: props.classNames }, props.items.map((item, index) => {
                 return props.renderMap(item, index);
-            })) : props.items.map(function (item, index) {
+            })) : props.items.map((item, index) => {
             return props.renderMap(item, index);
         }),
         props.searchInProgress ? props.loaderHTML() : React.createElement(React.Fragment, null),
         props.buttonSettings.show &&
-            React.createElement("button", { className: 'btn btn-primary back-to-top', onClick: function () {
+            React.createElement("button", { className: 'btn btn-primary back-to-top', onClick: () => {
                     if (props.buttonSettings.id) {
                         // @ts-ignore
                         document.getElementById(props.buttonSettings.id).scroll({
