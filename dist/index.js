@@ -1,8 +1,20 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 export const ShoppableInfiniteScroll = props => {
-    const loader = useRef(null);
+    console.log('props: ', props);
+    // @ts-ignore
+    const [loader] = useRef({ current: null | undefined });
     const [initiateFetch, setInitiateFetch] = useState(false);
+    // const [loader, setLoader] = useState();
     const [visible, setVisible] = useState(false);
+    useLayoutEffect(() => {
+        // @ts-ignore
+        console.log('useLayoytEffect: ', loader.current);
+        if (loader.current != null) {
+            console.log('loader.current is not null! ');
+            // @ts-ignore
+            loader.current = document.getElementById('scrollableDiv');
+        }
+    }, []);
     const handleObserver = useCallback((entries) => {
         // @ts-ignore
         if (entries[0] && entries[0].isIntersecting) {
@@ -11,13 +23,16 @@ export const ShoppableInfiniteScroll = props => {
     }, []);
     // track if scrollable div is in view
     useEffect(() => {
+        console.log('Observe div: ');
         const observer = new IntersectionObserver(handleObserver);
-        if (loader.current) {
+        if (loader.current != null) {
+            console.log('Observe loader.current: ');
             observer.observe(loader.current);
         }
     }, [handleObserver]);
     // initiate fetch if all conditions met
     useEffect(() => {
+        console.log('fetch: ');
         if (initiateFetch && props.hasMore && !props.searchInProgress) {
             // @ts-ignore
             props.fetch();
@@ -47,6 +62,8 @@ export const ShoppableInfiniteScroll = props => {
             setVisible(false);
         }
     };
+    console.log('before return! ');
+    console.log('loader: ', loader);
     return (React.createElement(React.Fragment, null,
         props.classNames ?
             React.createElement("div", { className: props.classNames }, props.items.map((item, index) => {
@@ -80,5 +97,5 @@ export const ShoppableInfiniteScroll = props => {
                     zIndex: '10'
                 } },
                 React.createElement("img", { src: 'https://storage.googleapis.com/shoppable-mp/arrow_white.webp', style: { height: '30px', padding: '.5rem' }, alt: 'Back to top' })),
-        React.createElement("div", { id: 'scrollableDiv', ref: loader, style: { height: props.hasMore ? '10px' : '0' } })));
+        React.createElement("div", { id: 'scrollableDiv', ref: (x) => { loader.current = x; }, style: { height: props.hasMore ? '10px' : '0' } })));
 };

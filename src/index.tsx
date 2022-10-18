@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 
 export interface ButtonSettings {
   /* Show back to top button */
@@ -32,10 +32,24 @@ export interface Props {
   loaderHTML : Function
 }
 
-export const ShoppableInfiniteScroll : React.FC<Props> = props => {
-  const loader = useRef<HTMLDivElement>(null);
+export const ShoppableInfiniteScroll : React.FunctionComponent<Props> = props =>  {
+  console.log('props: ', props);
+  // @ts-ignore
+  // const observer = useRef<IntersectionObserver>()
+  const [loader] = useRef<null | IntersectionObserver>(null);
   const [initiateFetch, setInitiateFetch] = useState(false);
+  // const [loader, setLoader] = useState();
   const [visible, setVisible] = useState(false);
+
+  useLayoutEffect(() => {
+    // @ts-ignore
+    console.log('useLayoytEffect: ', loader.current);
+    if (loader.current != null) {
+      console.log('loader.current is not null! ');
+      // @ts-ignore
+      loader.current = document.getElementById('scrollableDiv')
+    }
+  }, []);
 
   const handleObserver = useCallback(<T,>(entries : T) => {
     // @ts-ignore
@@ -46,14 +60,17 @@ export const ShoppableInfiniteScroll : React.FC<Props> = props => {
 
   // track if scrollable div is in view
   useEffect(() => {
+    console.log('Observe div: ');
     const observer = new IntersectionObserver(handleObserver);
-    if (loader.current) {
+    if (loader.current != null) {
+      console.log('Observe loader.current: ');
       observer.observe(loader.current);
     }
   }, [handleObserver]);
 
   // initiate fetch if all conditions met
   useEffect(() => {
+    console.log('fetch: ');
     if (initiateFetch && props.hasMore && !props.searchInProgress) {
       // @ts-ignore
       props.fetch();
@@ -84,6 +101,9 @@ export const ShoppableInfiniteScroll : React.FC<Props> = props => {
       setVisible(false);
     }
   };
+
+  console.log('before return! ')
+  console.log('loader: ', loader)
 
   return (
     <>
@@ -129,7 +149,7 @@ export const ShoppableInfiniteScroll : React.FC<Props> = props => {
                alt={'Back to top'}/>
         </button>
       }
-      <div id={'scrollableDiv'} ref={loader} style={{height: props.hasMore ? '10px' : '0'}}/>
+      <div id={'scrollableDiv'} ref={(x : HTMLDivElement) => {loader.current = x}} style={{height: props.hasMore ? '10px' : '0'}}/>
     </>
   )
 }
