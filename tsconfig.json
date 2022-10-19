@@ -7,6 +7,7 @@
       "esnext"
     ],
     "allowJs": true,
+    "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -23,8 +24,5 @@
   },
   "files": [
     "src/index.tsx"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }
