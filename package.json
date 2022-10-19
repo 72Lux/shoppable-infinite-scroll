@@ -1,6 +1,6 @@
 {
   "name": "@72lux/shoppable-infinite-scroll",
-  "version": "0.3.24",
+  "version": "0.3.25",
   "source": "src/index.tsx",
   "main": "dist/index.js",
   "dependencies": {
