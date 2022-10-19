@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import * as React from 'react'
 
 export interface ButtonSettings {
     /* Show back to top button */
@@ -34,10 +34,10 @@ export interface Props {
 
 const ShoppableInfiniteScroll: React.FC<Props> = props => {
     // @ts-ignore
-    const observer = useRef<T>(null)
-    const [initiateFetch, setInitiateFetch] = useState(false);
+    const observer = React.useRef<T>(null)
+    const [initiateFetch, setInitiateFetch] = React.useState(false);
     // const [loader, setLoader] = useState();
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = React.useState(false);
     const {
         fetch,
         hasMore,
@@ -50,7 +50,7 @@ const ShoppableInfiniteScroll: React.FC<Props> = props => {
     } = props
 
     // track if scrollable div is in view
-    const lastItemRef = useCallback((node: any) => {
+    const lastItemRef = React.useCallback((node: any) => {
         if (observer.current) observer.current?.disconnect()
         // Error: TS2532: Object is possibly 'undefined'.
         // why it should try to use `observer.current.disconnect()` after if(observer.current) condition
@@ -67,7 +67,7 @@ const ShoppableInfiniteScroll: React.FC<Props> = props => {
     }, [initiateFetch, hasMore, searchInProgress])
 
     // initiate fetch if all conditions met
-    useEffect(() => {
+    React.useEffect(() => {
         console.log('fetch: ');
         if (initiateFetch && hasMore && !searchInProgress) {
             // @ts-ignore
@@ -77,7 +77,7 @@ const ShoppableInfiniteScroll: React.FC<Props> = props => {
     }, [initiateFetch, hasMore, searchInProgress]);
 
     // check which dom element needs to be scrolled
-    useEffect(() => {
+    React.useEffect(() => {
         if (buttonSettings.id) {
             const el = document.getElementById(buttonSettings.id);
             // @ts-ignore

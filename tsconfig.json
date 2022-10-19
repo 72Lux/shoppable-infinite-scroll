@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-//    "target": "es6",
+    "target": "es6",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
+    "module": "esnext",
     "jsx": "react",
     "lib": [
       "dom",
@@ -19,12 +18,10 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-//    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-//    "jsx": "react",
     "outDir": "dist"
   },
   "files": [
