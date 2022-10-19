@@ -6,18 +6,11 @@ This project is the for the internal component for infinite scrolling for Shoppa
 
 ## Install
 
-```  
-  npm install --save @shoppable-tools/shoppable-infinite-scroll
+Then run `npm login` to fetch this package
 
-  or
-
-  yarn add @shoppable-tools/shoppable-infinite-scroll
-
-  // in code ES6
-  import InfiniteScroll from '@shoppable-tools/shoppable-infinite-scroll';
-  // or commonjs
-  var InfiniteScroll = require('@shoppable-tools/shoppable-infinite-scroll');
-```
+Updates done to this package requires you to delete the node_modules folder and the package-lock.json for the project this
+is installed in. Then run `npm install @72lux/shoppable-infinite-scroll@latest --legacy-peer-deps` (since you should have
+been logged in)
 
 ## props
 
