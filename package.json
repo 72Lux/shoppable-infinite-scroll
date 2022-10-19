@@ -1,9 +1,9 @@
 {
   "name": "@72lux/shoppable-infinite-scroll",
-  "version": "0.3.26",
+  "version": "0.3.27",
   "source": "src/index.tsx",
   "main": "dist/index.js",
-  "dependencies": {
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
