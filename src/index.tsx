@@ -68,7 +68,6 @@ const ShoppableInfiniteScroll: React.FC<Props> = props => {
 
     // initiate fetch if all conditions met
     React.useEffect(() => {
-        console.log('fetch: ');
         if (initiateFetch && hasMore && !searchInProgress) {
             // @ts-ignore
             fetch();
