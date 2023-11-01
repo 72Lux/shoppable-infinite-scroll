@@ -23,6 +23,7 @@
     "clean": "rimraf dist",
     "start": "npm run watch:build",
     "watch:build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
     "test": "jest"
   },
   "repository": "https://github.com/72Lux/shoppable-infinite-scroll",
